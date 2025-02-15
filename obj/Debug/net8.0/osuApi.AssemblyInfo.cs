@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Scuffed Aim")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ce81dc84e64ff8de07c1db93d2e04fb056768ef")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16f3f90a99b8306b815193af3b7e28c9d90f206d")]
 [assembly: System.Reflection.AssemblyProductAttribute("osuApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("osuApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

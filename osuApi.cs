@@ -1,5 +1,6 @@
 ﻿namespace osu_Api;
 using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
@@ -322,7 +323,47 @@ public class ApiClient(string clientId, string clientSecret)
                 Id = Id,
             };
         }
-        private async Task<BeatmapAttributes> GetBeatmapAttributesAsync(string beatmapId,Mod[] mods,JsonElement beatmapJson)
+        
+        private static BeatmapAttributes Process_mods(Mod[] mods, BeatmapAttributes attributes) {
+            foreach (Mod mod in mods) {
+                switch (mod.Acronym) {
+                    case "HR":
+                        attributes.HPDrain = Math.Min(10,attributes.HPDrain *= 1.4);
+                        attributes.CircleSize *= 1.3;
+                        break;
+                    case "HD":
+                        break;
+                    case "DT":
+                        attributes.BPM *= 1.5;
+                        attributes.Length = (int)(attributes.Length / 1.5);
+                        break;
+                    case "FL":
+                        break;
+                    case "EZ":
+                        attributes.CircleSize *= 0.5;
+                        attributes.HPDrain *= 0.5;
+                        break;
+                    case "NF":
+                        break;
+                    case "HT":
+                        attributes.Length = (int)(attributes.Length * 1.5);
+                        attributes.BPM /= 1.5;
+                        break;
+                    case "SO":
+                        break;
+                    case "NC":
+                        attributes.BPM *= 1.5;
+                        attributes.Length = (int)(attributes.Length / 1.5);
+                        break;
+                    case "SD":
+                        break;
+                    case "PF":
+                        break;
+                }
+            }
+            return attributes;
+        }
+        public async Task<BeatmapAttributes> GetBeatmapAttributesAsync(string beatmapId,Mod[] mods,JsonElement beatmapJson)
         {   
             int modValue = 0;
             foreach (Mod mod in mods)
@@ -358,7 +399,8 @@ public class ApiClient(string clientId, string clientSecret)
             double sr = beatmapAttributesJson.GetProperty("star_rating").GetDouble();
             int length = beatmapJson.GetProperty("total_length").GetInt32();
             int max_combo = beatmapAttributesJson.GetProperty("max_combo").GetInt32();
-            return new BeatmapAttributes
+
+            BeatmapAttributes beatmapAttributes = new()
             {
                 ApproachRate = ar,
                 CircleSize = cs,
@@ -369,6 +411,8 @@ public class ApiClient(string clientId, string clientSecret)
                 MaxCombo = max_combo,
                 Length = length
             };
+            return Process_mods(mods,beatmapAttributes);
+
         }   
         
         public async Task<Beatmap> GetBeatmapAsync(string beatmapId,Mod[] mods)
