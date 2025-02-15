@@ -5,6 +5,11 @@
     <RootNamespace>osu_Api</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>scuffedaim.osuapi</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Sneznykocur</Authors>
+    <Company>Scuffed Aim</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

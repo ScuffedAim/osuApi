@@ -61,7 +61,7 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "/data/programming/osu-cs/osuApi/osuApi.csproj",
-      "projectName": "osuApi",
+      "projectName": "scuffedaim.osuapi",
       "projectPath": "/data/programming/osu-cs/osuApi/osuApi.csproj",
       "packagesPath": "/home/sneznykocur/.nuget/packages/",
       "outputPath": "/data/programming/osu-cs/osuApi/obj/",
